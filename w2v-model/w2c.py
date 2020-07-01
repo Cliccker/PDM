@@ -4,40 +4,45 @@ import jieba
 from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
 import time
-import re
+
+'''
+magazine 杂志名，可以更换成多本杂志的合集或者别的数据库
+dictPath 字典文件
+sumPath 未分词的摘要文件
+procPath 去除英文和数字的摘要文件
+modPath 词向量模型文件
+'''
 
 magazine = "压力容器"
-def separate(magazine):
-    dictPath = '../data/Dicts/' + magazine + '_dict.txt'
-    sumPath = '../data/Summaries/' + magazine + '_summary.txt'
-    procPath = '../data/Processed/' + magazine + '_proc.txt'
+dictPath = '../data/Dicts/' + magazine + '_dict.txt' 
+sumPath = '../data/Summaries/' + magazine + '_summary.txt'
+procPath = '../data/Processed/' + magazine + '_proc.txt'
+modPath = '../Mod/' + magazine + '.model'
 
+
+
+def separate():
     jieba.load_userdict(dictPath)  # 为jieba导入用户字典
-    stopwords = [line.strip() for line in open('stop_words.txt', encoding='UTF-8').readlines()]
+    stopwords = [line.strip() for line in open('stop_words.txt', encoding='UTF-8').readlines()]  # 去除停用词
     input_file = open(sumPath, 'r', encoding='utf-8')
     output_file = open(procPath, 'w', encoding='utf-8')
     lines = input_file.readlines()
     for line in lines:
-        # 这里是为了去除所有英文字符
         sentence = jieba.cut(line.split('\n')[0].replace(' ', ''))
-        # 输出结果为outstr
-        outstr = ''
+        # 输出结果为outputStr
+        outputStr = ''
         # 去停用词
         for word in sentence:
             if word not in stopwords:
                 if word != '\t':
-                    outstr += word
-                    outstr += " "
-        output_file.write(outstr)
+                    outputStr += word
+                    outputStr += " "
+        output_file.write(outputStr)
     print('分词程序执行结束！')
 
 
 if __name__ == "__main__":
     separate(magazine)
-
-    input_file_name = '../data/Processed/' + magazine + '_proc.txt'
-    model_file_name = '../Mod/' + magazine + '.model'
-
     '''
      LineSentence(inp)：格式简单：一句话=一行; 单词已经过预处理并被空格分隔。
      size：是每个词的向量维度； 
@@ -50,7 +55,7 @@ if __name__ == "__main__":
      '''
     print('开始转换...')
     start = time.process_time()
-    model = Word2Vec(LineSentence(input_file_name),
+    model = Word2Vec(LineSentence(procPath),
                      size=400,  # 词向量长度为400
                      window=8,
                      min_count=5,
@@ -59,6 +64,6 @@ if __name__ == "__main__":
                      sg=1,
                      hs=1)
 
-    model.save(model_file_name)
+    model.save(modPath)
     end = time.process_time()  # 计时模块
     print('模型已保存!\n转换用时: %s Seconds' % (end - start))
