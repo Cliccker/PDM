@@ -1,4 +1,4 @@
-# professionalDomainModel
+# proDM
 json文件 data\srcData
 json文件清洗 cleaning.py
 处理过的文件 data\Summaries
