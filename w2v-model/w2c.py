@@ -9,16 +9,15 @@ import time
 magazine 杂志名，可以更换成多本杂志的合集或者别的数据库
 dictPath 字典文件
 sumPath 未分词的摘要文件
-procPath 去除英文和数字的摘要文件
+procPath 去除英文和数字并分词完成摘要文件
 modPath 词向量模型文件
 '''
 
 magazine = "压力容器"
-dictPath = '../data/Dicts/' + magazine + '_dict.txt' 
+dictPath = '../data/Dicts/' + magazine + '_dict.txt'
 sumPath = '../data/Summaries/' + magazine + '_summary.txt'
 procPath = '../data/Processed/' + magazine + '_proc.txt'
 modPath = '../Mod/' + magazine + '.model'
-
 
 
 def separate():
@@ -42,7 +41,7 @@ def separate():
 
 
 if __name__ == "__main__":
-    separate(magazine)
+    separate()
     '''
      LineSentence(inp)：格式简单：一句话=一行; 单词已经过预处理并被空格分隔。
      size：是每个词的向量维度； 
