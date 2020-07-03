@@ -36,7 +36,7 @@ def separate():
                 if word != '\t':
                     outputStr += word
                     outputStr += " "
-        output_file.write(outputStr)
+        output_file.write(outputStr+'\n')
     print('分词程序执行结束！')
 
 

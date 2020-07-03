@@ -2,9 +2,10 @@ from openpyxl import load_workbook
 import json
 
 
-def readXlsx():  # 读取xlsx文件创建标注字典
+def readXlsx(magazine):  # 读取xlsx文件创建标注字典
 
-    form = load_workbook(r'../data/taggedDicts/压力容器字典构建.xlsx')
+    xlsxPath = '../data/Dicts/' + magazine + '标注字典.xlsx'
+    form = load_workbook(xlsxPath)
     idxDict = {}
     sheet = form["Sheet2"]
     for i in sheet.columns:
@@ -15,7 +16,7 @@ def readXlsx():  # 读取xlsx文件创建标注字典
         for term in cols[3:]:
             idxDict[term] = cols[0:3]
 
-    return (idxDict)
+    return idxDict
 
 
 def Mark(magazine):
@@ -24,7 +25,7 @@ def Mark(magazine):
     jsonPath = '../data/Processed/' + magazine + '_marked.json'
     input_file = open(procPath, 'r', encoding='utf-8')
     lines = input_file.readlines()
-    idxDict = readXlsx()
+    idxDict = readXlsx(magazine)
     txtAftLabeling = []
     for line in lines:
         words = line.split(' ')
@@ -45,5 +46,6 @@ def Mark(magazine):
         with open(jsonPath, 'w', encoding='utf-8') as f:
             json.dump(txtAftLabeling, f, ensure_ascii=False)
     print('标注完成')
+
 
 Mark('压力容器')
