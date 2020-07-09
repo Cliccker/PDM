@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from py2neo import Node, Graph, Relationship
-import collections
 
 
 class DataToNeo4j(object):
@@ -10,50 +9,32 @@ class DataToNeo4j(object):
         """建立连接"""
         link = Graph("http://localhost:7474", username="neo4j", password="1234")
         self.graph = link
-        # 定义label
-        self.entity_name = '实体'
-        self.entity_id = '编号'
         self.graph.delete_all()
-        self.graph.create(Node(self.entity_name, name="ASME标准"))
 
-    def create_node(self, nodeKey, nodeValue, nodeDict):
-        """建立节点"""
-        """建立标题节点"""
-        for Key in nodeKey:
-            name_node = Node(self.entity_name, name=Key)
-            self.graph.create(name_node)
+    def create_node(self, nodeValue, nodeDict):
         """建立序号节点"""
-        for name in nodeValue:
-            id_node = Node(self.entity_id, name=name, title=nodeDict[name])
-            self.graph.create(id_node)
-
-    def create_relation(self, df_data, id_data, nodeDict, fullname_dict):
-        """建立联系"""
-        m = 0
-        for m in range(0, len(df_data)):
-            try:
-                rel = Relationship(self.graph.find_one(label=self.entity_name, property_key='name',
-                                                       property_value=df_data['itself'][m]),
-                                   df_data['relation'][m],
-                                   self.graph.find_one(label=self.entity_name, property_key='name',
-                                                       property_value=fullname_dict[df_data['superior'][m]]))
-
-                self.graph.create(rel)
-            except AttributeError as e:
-                print(e, m)
-            except KeyError as ee:
-                print(ee, m)
         n = 0
+        for name in nodeValue:
+            id_node = Node(name[0], name=name[1], title=nodeDict[name[1]][1])
+            self.graph.create(id_node)
+            n += 1
+        print("{} Nodes Created".format(n))
+
+
+    def create_relation(self, id_data, nodeDict):
+        """建立联系"""
+        count =0
         for n in range(0, len(id_data)):
             try:
-                rel = Relationship(self.graph.find_one(label=self.entity_id, property_key='name',
+                rel = Relationship(self.graph.find_one(label=nodeDict[id_data['itself'][n]][0], property_key='name',
                                                        property_value=id_data['itself'][n]),
-                                   df_data['relation'][n],
-                                   self.graph.find_one(label=self.entity_id, property_key='name',
+                                   id_data['relation'][n],
+                                   self.graph.find_one(label=nodeDict[id_data['superior'][n]][0], property_key='name',
                                                        property_value=id_data['superior'][n]))
-
                 self.graph.create(rel)
+                count +=1
             except AttributeError as e:
                 print(e, n)
-            except KeyError as ee:
-                print(ee, n)
+            except KeyError as Ke:
+                pass
+        print("{} Relationships Created".format(count))
