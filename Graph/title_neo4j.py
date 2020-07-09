@@ -6,6 +6,7 @@ import pandas as pd
 standard_data = pd.read_excel('./Data/demo.xlsx', header=0, encoding='utf8')
 print("Data Loaded")
 
+
 def data_extraction():
     """节点数据抽取"""
     # 取出标题到list
