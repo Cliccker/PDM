@@ -21,6 +21,8 @@ def data_extraction():
         node_list_id.append(id)
         node_list_value.append(title + "_" + id)
         fullname_dict[id] = title + "_" + id
+        print(fullname_dict)
+        fullname_dict['ASME'] = "ASME标准"
         nodeDict[id] = title
         nodeDict['ASME'] = "ASME标准"
 
@@ -73,7 +75,7 @@ def relation_extraction():
     # 将数据转成DataFrame
     df_data = pd.DataFrame(links_dict).dropna(axis=0, how='any').reset_index(drop=True)
     id_data = pd.DataFrame(id_dict).dropna(axis=0, how='any').reset_index(drop=True)
-    print(df_data)
+
     return df_data, id_data
 
 
