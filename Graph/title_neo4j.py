@@ -21,11 +21,9 @@ def data_extraction():
         node_list_id.append(id)
         node_list_value.append(title + "_" + id)
         fullname_dict[id] = title + "_" + id
-        print(fullname_dict)
-        fullname_dict['ASME'] = "ASME标准"
         nodeDict[id] = title
-        nodeDict['ASME'] = "ASME标准"
-
+    nodeDict['ASME'] = "ASME标准"
+    fullname_dict['ASME'] = "ASME标准"
     return node_list_value, node_list_id, nodeDict, fullname_dict
 
 
