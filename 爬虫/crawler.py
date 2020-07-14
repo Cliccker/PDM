@@ -6,6 +6,7 @@ from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
+from jsonClean import json_extraction
 import time
 import random
 
@@ -124,8 +125,6 @@ if __name__ == '__main__':
         # dataframe = pd.DataFrame({'关键词': list_k})
         with open(path + '_data.json', 'w', encoding='utf-8') as f:
             json.dump(content, f, ensure_ascii=False)
-        # dataframe.to_csv(path + "_dict.csv", sep=',', encoding='utf-8')
-        # 将DataFrame存储为csv,index表示是否显示行名，default=True
-        # 不是每次循环都会存储字典
         ActionChains(browser).key_down(Keys.ARROW_RIGHT).perform()
         time.sleep(random.uniform(2, 4))
+

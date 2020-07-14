@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Graph/dataToNeo4jClass" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Graph" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/爬虫" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.7 (PDM)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

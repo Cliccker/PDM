@@ -3,7 +3,7 @@ import pandas as pd
 
 def text_save(filename):  # filename为写入CSV文件的路径，data为要写入数据列表.
     data = []
-    corpus = pd.read_csv('dict.csv')
+    corpus = pd.read_csv('dictList.csv')
     corpus = corpus.values.tolist()
     for i in range(len(corpus)):
         data.append(corpus[i][1])
