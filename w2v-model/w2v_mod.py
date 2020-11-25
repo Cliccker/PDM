@@ -15,7 +15,7 @@ modPath 词向量模型文件
 
 magazine = "压力容器"
 dictPath = '../data/Dicts/' + magazine + '_dict.txt'
-sumPath = '../data/Summaries/' + magazine + '_summary.txt'
+sumPath = '../data/Clean/' + magazine + '_summary.txt'
 procPath = '../data/Processed/' + magazine + '_proc.txt'
 modPath = '../Mod/' + magazine + '.model'
 

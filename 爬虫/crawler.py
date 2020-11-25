@@ -95,7 +95,7 @@ if __name__ == '__main__':
     browser = webdriver.Chrome()
     firstHandle = browser.window_handles[0]
 
-    magazine = "化工机械"  # 这里填写杂志名称
+    magazine = "塑性工程学报"  # 这里填写杂志名称
     path = '../data/srcData/' + magazine
     # Keywords = Dict(path)
 
