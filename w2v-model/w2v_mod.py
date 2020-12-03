@@ -55,12 +55,12 @@ if __name__ == "__main__":
     print('开始转换...')
     start = time.process_time()
     model = Word2Vec(LineSentence(procPath),
-                     size=400,  # 词向量长度为400
-                     window=8,
-                     min_count=5,
+                     size=100,  # 词向量长度为400
+                     window=3,
+                     min_count=3,
                      workers=multiprocessing.cpu_count(),
-                     iter=10,
-                     sg=1,
+                     iter=20,
+                     sg=0,
                      hs=1)
 
     model.save(modPath)

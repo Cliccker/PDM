@@ -49,4 +49,4 @@ def readPaperData(paperName):
 
 if __name__ == '__main__':
 	# readJson("压力容器")
-	readPaperData("data/Paper/JB4732.txt")
+	readPaperData("data/论文聚合.txt")
