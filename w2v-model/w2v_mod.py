@@ -16,8 +16,10 @@ modPath 词向量模型文件
 magazine = "压力容器"
 dictPath = '../data/Dicts/' + magazine + '_dict.txt'
 sumPath = '../data/Clean/' + magazine + '_summary.txt'
+# sumPath = 'data/Clean/所有语料.txt'
 procPath = '../data/Processed/' + magazine + '_proc.txt'
-modPath = '../Mod/' + magazine + '.model'
+# modPath = '../Mod/' + magazine + '.model'
+modPath = '../Mod/FEA_2.model'
 
 
 def separate():
@@ -55,7 +57,7 @@ if __name__ == "__main__":
     print('开始转换...')
     start = time.process_time()
     model = Word2Vec(LineSentence(procPath),
-                     size=100,  # 词向量长度为400
+                     size=10,  # 词向量长度为400
                      window=3,
                      min_count=3,
                      workers=multiprocessing.cpu_count(),
