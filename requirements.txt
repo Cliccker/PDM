@@ -70,7 +70,7 @@ python-dateutil==2.8.1
 pytz==2020.1
 requests @ file:///tmp/build/80754af9/requests_1592841827918/work
 requests-oauthlib==1.3.0
-rsa==4.6
+rsa==4.7
 scikit-learn @ file:///C:/ci/scikit-learn_1592847564598/work
 scipy==1.4.1
 selenium==3.141.0
